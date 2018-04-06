@@ -1,0 +1,41 @@
+{
+  "author": "VitZhou <vitzhou@gmail.com>",
+  "description": "Helm 学习笔记(中文翻译)",
+  "generator": "site",
+  "sidebar": {
+    "vitzhou@gitbook": "https://vitzhou.gitbooks.io"
+  },
+  "output": null,
+  "title": "Helm 学习笔记(中文翻译)",
+  "gitbook": ">=3.2.0",
+  "plugins": [
+    "donate",
+    "splitter",
+    "emphasize",
+    "tbfed-pagefooter",
+	"toggle-chapters",
+    "edit-link", 
+    "etoc",
+    "back-to-top-button",
+    "tags"
+  ],
+  "pluginsConfig": {
+    "donate": {
+      "wechat": "https://vitzhou.gitbooks.io/java-test-learning/content/img/wechat.png",
+      "alipay": "https://vitzhou.gitbooks.io/java-test-learning/content/img/alipay.png",
+      "title": "",
+      "button": "赏",
+      "alipayText": "支付宝打赏",
+      "wechatText": "微信打赏"
+    },
+	"edit-link": {
+        "base": "https://github.com/vitzhou/study-helm.git/edit/master",
+        "label": "Edit"
+    },
+    "tbfed-pagefooter": {
+      "copyright":"Copyright &copy www.gitbook.com/@VitZhou 2016",
+      "modify_label": "该文件修订时间：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    }
+  }
+}
