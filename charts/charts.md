@@ -423,13 +423,13 @@ spec:
       serviceAccount: deis-database
       containers:
         - name: deis-database
-          image: {{.Values.imageRegistry}}/postgres:{{.Values.dockerTag}}
-          imagePullPolicy: {{.Values.pullPolicy}}
+          image: \{\{.Values.imageRegistry\}\}/postgres:\{\{.Values.dockerTag\}\}
+          imagePullPolicy: \{\{.Values.pullPolicy\}\}
           ports:
             - containerPort: 5432
           env:
             - name: DATABASE_STORAGE
-              value: {{default "minio" .Values.storage}}
+              value: \{\{default "minio" .Values.storage\}\}
 ```
 
 上面的例子基于https://github.com/deis/charts，是Kubernetes复制控制器的模板。 它可以使用以下四个模板值（通常在values.yaml文件中定义):
@@ -457,8 +457,8 @@ spec:
 - Release.IsInstall: 如果当前操作是安装，则设置为true。
 - Release.Revision: 修订编号。 它从1开始，随着每次helm upgrade而增加
 - Chart: Chart.yaml的内容。 因此，chart版本可以作为Chart.Version获得，维护者在Chart.Maintainers中。
-- Files: 包含chart中所有非特殊文件的类map对象。 这不会让您访问模板，但会让您访问其他存在的文件（除非它们使用.helmignore排除）。 可以使用{{index.Files“file.name”}}或使用{{.Files.Get name}}或{{.Files.GetString name}}功能访问文件。 您还可以使用{{.Files.GetBytes}}以字节数组的形式访问文件的内容
-- Capabilities: 包含有关Kubernetes（{{.Capabilities.KubeVersion}}，Tiller（{{.Capabilities.TillerVersion}}和受支持的Kubernetes API版本（{{.Capabilities.APIVersions.Has“）版本信息的map-like对象。"batch/V1"）
+- Files: 包含chart中所有非特殊文件的类map对象。 这不会让您访问模板，但会让您访问其他存在的文件（除非它们使用.helmignore排除）。 可以使用\{\{index.Files“file.name”\}\}或使用\{\{.Files.Get name\}\}或\{\{.Files.GetString name\}\}功能访问文件。 您还可以使用\{\{.Files.GetBytes\}\}以字节数组的形式访问文件的内容
+- Capabilities: 包含有关Kubernetes（\{\{.Capabilities.KubeVersion\}\}，Tiller（\{\{.Capabilities.TillerVersion\}\}和受支持的Kubernetes API版本（\{\{.Capabilities.APIVersions.Has“）版本信息的map-like对象."batch/V1"）
 
 > 任何未知的Chart.yaml字段将被删除。 它们不会在Chart对象内部可访问。 因此，Chart.yaml不能用于将任意结构化的数据传递到模板中。 虽然values文件可以。
 
@@ -473,13 +473,13 @@ pullPolicy: "Always"
 storage: "s3"
 ```
 
-Values文件在YAML中格式化。 Chart可能包含一个默认的values.yaml文件。 Helm install命令允许用户通过提供其他YAML值来覆盖values：
+Values文件在YAML中格式化。 Chart可能包含一个默认的values.yaml文件. Helm install命令允许用户通过提供其他YAML值来覆盖values：
 
 ```shell
 $ helm install --values=myvals.yaml wordpress
 ```
 
-当以这种方式传递值时，它们将被合并到默认values文件中。 例如，考虑一个如下所示的myvals.yaml文件：
+当以这种方式传递值时，它们将被合并到默认values文件中. 例如，考虑一个如下所示的myvals.yaml文件：
 
 ```yaml
 storage: "gcs"
@@ -495,7 +495,7 @@ storage: "gcs"
 ```
 > 请注意，只有最后一个字段被覆盖。
 > 包含在charta内的默认values文件必须命名为values.yaml。 但是在命令行上指定的文件可以被命名为任何东西。
-> 如果在helm install或helm upgrade时使用--set标志，则这些值仅在客户端转换为YAML。
+> 如果在helm install或helm upgrade时使用--set标志，则这些值仅在客户端转换为YAML
 > 如果values文件中存在必需条目，则可以使用“required”功能在chart模板中声明它们
 
 然后使用.Values对象在模板内部访问这些值中的任何一个:
@@ -520,13 +520,13 @@ spec:
       serviceAccount: deis-database
       containers:
         - name: deis-database
-          image: {{.Values.imageRegistry}}/postgres:{{.Values.dockerTag}}
-          imagePullPolicy: {{.Values.pullPolicy}}
+          image: \{\{.Values.imageRegistry\}\}/postgres:\{\{.Values.dockerTag\}\}
+          imagePullPolicy: \{\{.Values.pullPolicy\}\}
           ports:
             - containerPort: 5432
           env:
             - name: DATABASE_STORAGE
-              value: {{default "minio" .Values.storage}}
+              value: \{\{default "minio" .Values.storage\}\}
 ```
 
 ### Scope, Dependencies, 和 Values
@@ -568,7 +568,7 @@ apache:
 
 上面添加了值为app:MyWordPress的global部分。 此值可作为.Values.global.app提供给所有chart。
 
-例如，mysql模板可以以{{.Values.global.app}}的形式访问应用程序，而apache chart也可以。上面的values文件是这样有效地重新生成的:
+例如，mysql模板可以以\{\{.Values.global.app\}\}的形式访问应用程序，而apache chart也可以。上面的values文件是这样有效地重新生成的:
 
 ```yaml
 title: "My WordPress Site" # Sent to the WordPress template

@@ -1,0 +1,544 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>开发chart的技巧 · Helm 学习笔记(中文翻译)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="VitZhou <vitzhou@gmail.com>">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-etoc/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tags/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="repository.html" />
+    
+    
+    <link rel="prev" href="lifecycle_hooks.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../use_helm/use_helm.html">
+            
+                <a href="../use_helm/use_helm.html">
+            
+                    
+                    使用Helm
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../use_helm/plugin.html">
+            
+                <a href="../use_helm/plugin.html">
+            
+                    
+                    插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="charts.html">
+            
+                <a href="charts.html">
+            
+                    
+                    Charts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="lifecycle_hooks.html">
+            
+                <a href="lifecycle_hooks.html">
+            
+                    
+                    生命周期和钩子
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="tips_and_tricks.html">
+            
+                <a href="tips_and_tricks.html">
+            
+                    
+                    开发chart的技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="repository.html">
+            
+                <a href="repository.html">
+            
+                    
+                    chart库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="syncing_repository.html">
+            
+                <a href="syncing_repository.html">
+            
+                    
+                    同步chart库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="provenance_integrity.html">
+            
+                <a href="provenance_integrity.html">
+            
+                    
+                    chart签名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="chart_test.html">
+            
+                <a href="chart_test.html">
+            
+                    
+                    chart测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >开发chart的技巧</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="chart&#x5F00;&#x53D1;&#x63D0;&#x793A;&#x548C;&#x6280;&#x5DE7;">chart&#x5F00;&#x53D1;&#x63D0;&#x793A;&#x548C;&#x6280;&#x5DE7;</h1>
+<!-- toc --><div id="toc" class="toc">
+
+<ul>
+<li><a href="#&#x4E86;&#x89E3;&#x4F60;&#x7684;&#x6A21;&#x677F;&#x529F;&#x80FD;">&#x4E86;&#x89E3;&#x4F60;&#x7684;&#x6A21;&#x677F;&#x529F;&#x80FD;</a></li>
+<li><a href="#&#x5F15;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8BF7;&#x52FF;&#x5F15;&#x7528;&#x6574;&#x6570;">&#x5F15;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8BF7;&#x52FF;&#x5F15;&#x7528;&#x6574;&#x6570;</a></li>
+<li><a href="#&#x4F7F;&#x7528;include&#x51FD;&#x6570;">&#x4F7F;&#x7528;<code>include</code>&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x4F7F;&#x7528;required&#x51FD;&#x6570;">&#x4F7F;&#x7528;<code>REQUIRED</code>&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x521B;&#x5EFA;&#x955C;&#x50CF;&#x62C9;&#x53D6;secret">&#x521B;&#x5EFA;&#x955C;&#x50CF;&#x62C9;&#x53D6;secret</a></li>
+<li><a href="#&#x5728;&#x914D;&#x7F6E;&#x6216;secret&#x53D8;&#x66F4;&#x65F6;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x5377;&#x5C55;&#x5F00;">&#x5728;&#x914D;&#x7F6E;&#x6216;secret&#x53D8;&#x66F4;&#x65F6;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x5377;&#x5C55;&#x5F00;</a></li>
+<li><a href="#&#x544A;&#x8BC9;tiller&#x4E0D;&#x8981;&#x5220;&#x9664;&#x8D44;&#x6E90;">&#x544A;&#x8BC9;TILLER&#x4E0D;&#x8981;&#x5220;&#x9664;&#x8D44;&#x6E90;</a></li>
+<li><a href="#&#x4F7F;&#x7528;partials&#x548C;&#x6A21;&#x677F;&#x5305;&#x542B;">&#x4F7F;&#x7528;&#x201C;PARTIALS&#x201D;&#x548C;&#x6A21;&#x677F;&#x5305;&#x542B;</a></li>
+<li><a href="#&#x590D;&#x6742;&#x7684;chart&#x4E0E;&#x8BB8;&#x591A;&#x76F8;&#x5173;&#x5185;&#x5BB9;">&#x590D;&#x6742;&#x7684;chart&#x4E0E;&#x8BB8;&#x591A;&#x76F8;&#x5173;&#x5185;&#x5BB9;</a></li>
+<li><a href="#yaml&#x662F;json&#x7684;&#x4E00;&#x4E2A;&#x8D85;&#x7EA7;">YAML&#x662F;JSON&#x7684;&#x4E00;&#x4E2A;&#x8D85;&#x7EA7;</a></li>
+<li><a href="#&#x8BF7;&#x5C0F;&#x5FC3;&#x751F;&#x6210;&#x968F;&#x673A;&#x503C;">&#x8BF7;&#x5C0F;&#x5FC3;&#x751F;&#x6210;&#x968F;&#x673A;&#x503C;</a></li>
+<li><a href="#&#x7ACB;&#x5373;&#x5347;&#x7EA7;&#x7248;&#x672C;">&#x7ACB;&#x5373;&#x5347;&#x7EA7;&#x7248;&#x672C;</a></li>
+</ul>
+
+</div><!-- tocstop -->
+<p>&#x672C;&#x6307;&#x5357;&#x6DB5;&#x76D6;&#x4E86;Helm chart&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5728;&#x5EFA;&#x7ACB;&#x751F;&#x4EA7;&#x8D28;&#x91CF;chart&#x65F6;&#x5B66;&#x5230;&#x7684;&#x4E00;&#x4E9B;&#x63D0;&#x793A;&#x548C;&#x6280;&#x5DE7;&#x3002;</p>
+<h2 id="&#x4E86;&#x89E3;&#x4F60;&#x7684;&#x6A21;&#x677F;&#x529F;&#x80FD;">&#x4E86;&#x89E3;&#x4F60;&#x7684;&#x6A21;&#x677F;&#x529F;&#x80FD;</h2>
+<p>Helm&#x4F7F;&#x7528;<a href="https://godoc.org/text/template" target="_blank">Go&#x6A21;&#x677F;</a>&#x6A21;&#x677F;&#x5316;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x3002; &#x867D;&#x7136;Go&#x63D0;&#x4F9B;&#x4E86;&#x51E0;&#x4E2A;&#x5185;&#x7F6E;&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x8FD8;&#x6DFB;&#x52A0;&#x4E86;&#x8BB8;&#x591A;&#x5176;&#x4ED6;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x5728;<a href="https://godoc.org/github.com/Masterminds/sprig" target="_blank">Sprig&#x5E93;</a>&#x4E2D;&#x6DFB;&#x52A0;&#x4E86;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684;&#x529F;&#x80FD;&#x3002; &#x51FA;&#x4E8E;&#x5B89;&#x5168;&#x539F;&#x56E0;&#xFF0C;&#x6211;&#x4EEC;&#x5220;&#x9664;&#x4E86;&#x4E24;&#x4E2A;&#xFF1A;env&#x548C;expandenv(&#x8FD9;&#x4F1A;&#x8BA9;chart&#x4F5C;&#x8005;&#x8BBF;&#x95EE;Tiller&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;).</p>
+<p>&#x6211;&#x4EEC;&#x8FD8;&#x6DFB;&#x52A0;&#x4E86;&#x4E24;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x6A21;&#x677F;&#x51FD;&#x6570;&#xFF1A;include&#x548C;required&#x3002; include&#x51FD;&#x6570;&#x5141;&#x8BB8;&#x60A8;&#x5F15;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x4F20;&#x9012;&#x7ED9;&#x5176;&#x4ED6;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x8FD9;&#x4E2A;&#x6A21;&#x677F;&#x7247;&#x6BB5;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;mytpl&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x5C0F;&#x5199;&#xFF0C;&#x7136;&#x540E;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#x5C06;&#x5176;&#x6362;&#x884C;&#x3002;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">value:</span> {{include <span class="hljs-string">&quot;mytpl&quot;</span> . | lower | quote}}
+</code></pre>
+<p>required&#x7684;&#x529F;&#x80FD;&#x5141;&#x8BB8;&#x60A8;&#x6839;&#x636E;&#x6A21;&#x677F;&#x6E32;&#x67D3;&#x7684;&#x8981;&#x6C42;&#x58F0;&#x660E;&#x7279;&#x5B9A;&#x7684;values&#x6761;&#x76EE;&#x3002; &#x5982;&#x679C;&#x8BE5;&#x503C;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x6A21;&#x677F;&#x6E32;&#x67D3;&#x5C06;&#x5931;&#x8D25;&#x5E76;&#x663E;&#x793A;&#x7528;&#x6237;&#x63D0;&#x4EA4;&#x7684;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E86;required&#x7684;.Values.who&#x6761;&#x76EE;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x7F3A;&#x5C11;&#x8BE5;&#x6761;&#x76EE;&#x65F6;&#x5C06;&#x8F93;&#x51FA;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">value:</span> {{required <span class="hljs-string">&quot;A valid .Values.who entry required!&quot;</span> .Values.who }}
+</code></pre>
+<h2 id="&#x5F15;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8BF7;&#x52FF;&#x5F15;&#x7528;&#x6574;&#x6570;">&#x5F15;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8BF7;&#x52FF;&#x5F15;&#x7528;&#x6574;&#x6570;</h2>
+<p>&#x5F53;&#x4F60;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x4F60;&#x603B;&#x662F;&#x5F15;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6BD4;&#x628A;&#x5B83;&#x4EEC;&#x7559;&#x4E3A;&#x7A7A;&#x767D;&#x5B57;&#x7B26;&#x66F4;&#x5B89;&#x5168;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">name:</span> {{.Values.MyName | quote }}
+</code></pre>
+<p>&#x4F46;&#x662F;&#xFF0C;&#x4F7F;&#x7528;&#x6574;&#x6570;&#x65F6;&#x4E0D;&#x8981;&#x5F15;&#x7528;&#x503C;&#x3002; &#x5728;&#x5F88;&#x591A;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;Kubernetes&#x5185;&#x90E8;&#x7684;&#x89E3;&#x6790;&#x9519;&#x8BEF;&#x3002;</p>
+<pre><code class="lang-yam">port: {{ .Values.Port }}
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x6CE8;&#x89E3;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x9884;&#x5148;&#x8BBE;&#x5B9A;env&#x53D8;&#x91CF;&#x503C;&#xFF0C;&#x5373;&#x4F7F;&#x5B83;&#x4EEC;&#x8868;&#x793A;&#x6574;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">env:</span>
+<span class="hljs-attr">  -name:</span> HOST
+<span class="hljs-attr">    value:</span> <span class="hljs-string">&quot;http://host&quot;</span>
+<span class="hljs-attr">  -name:</span> PORT
+<span class="hljs-attr">    value:</span> <span class="hljs-string">&quot;1234&quot;</span>
+</code></pre>
+<h2 id="&#x4F7F;&#x7528;include&#x51FD;&#x6570;">&#x4F7F;&#x7528;<code>include</code>&#x51FD;&#x6570;</h2>
+<p>Go&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x6A21;&#x677F;&#x6307;&#x4EE4;&#x5C06;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x5305;&#x542B;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x3002; &#x4F46;&#x662F;&#xFF0C;Go&#x6A21;&#x677F;pipeline&#x4E2D;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x5305;&#x542B;&#x6A21;&#x677F;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x8BE5;&#x6A21;&#x677F;&#x7684;&#x8F93;&#x51FA;&#x6267;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;Helm&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x5305;&#x542B;&#x51FD;&#x6570;:</p>
+<pre><code class="lang-yaml">{{ include <span class="hljs-string">&quot;toYaml&quot;</span> $value | indent <span class="hljs-number">2</span> }}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;toYaml&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x5C06;&#x5B83;&#x4F20;&#x9012;&#x7ED9;$value&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8BE5;&#x6A21;&#x677F;&#x7684;&#x8F93;&#x51FA;&#x4F20;&#x9012;&#x7ED9;indent&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;YAML&#x8D4B;&#x4E88;&#x7F29;&#x8FDB;&#x7EA7;&#x522B;&#x548C;&#x7A7A;&#x767D;&#x7684;&#x91CD;&#x8981;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x662F;&#x5305;&#x542B;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x7684;&#x597D;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x518D;&#x76F8;&#x5173;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x5904;&#x7406;&#x7F29;&#x8FDB;&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;required&#x51FD;&#x6570;">&#x4F7F;&#x7528;<code>REQUIRED</code>&#x51FD;&#x6570;</h2>
+<p>Go&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x8BBE;&#x7F6E;&#x6A21;&#x677F;&#x9009;&#x9879;&#x4EE5;&#x63A7;&#x5236;map&#x4F7F;&#x7528;map&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x7684;key&#x7F16;&#x5236;&#x7D22;&#x5F15;&#x65F6;&#x7684;&#x884C;&#x4E3A;&#x7684;&#x65B9;&#x6CD5;&#x3002; &#x8FD9;&#x901A;&#x5E38;&#x4F7F;&#x7528;template.Options&#xFF08;&#x201C;missingkey = option&#x201D;&#xFF09;&#x8BBE;&#x7F6E;&#xFF0C;&#x5176;&#x4E2D;&#x9009;&#x9879;&#x53EF;&#x4EE5;&#x662F;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x96F6;&#x6216;&#x9519;&#x8BEF;&#x3002; &#x5C06;&#x6B64;&#x9009;&#x9879;&#x8BBE;&#x7F6E;&#x4E3A;&#x9519;&#x8BEF;&#x5C06;&#x505C;&#x6B62;&#x6267;&#x884C;&#x5E76;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#xFF0C;&#x8FD9;&#x5C06;&#x5E94;&#x7528;&#x4E8E;map&#x4E2D;&#x6BCF;&#x4E2A;&#x7F3A;&#x5931;&#x7684;key&#x3002; &#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;chart&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x60F3;&#x8981;&#x4E3A;values.yml&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x9009;&#x62E9;values&#x5F3A;&#x5236;&#x5B9E;&#x65BD;&#x6B64;&#x884C;&#x4E3A;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>required&#x7684;&#x51FD;&#x6570;&#x4F7F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x80FD;&#x591F;&#x6839;&#x636E;&#x6A21;&#x677F;&#x6E32;&#x67D3;&#x7684;&#x8981;&#x6C42;&#x58F0;&#x660E;value&#x6761;&#x76EE;&#x3002; &#x5982;&#x679C;values.yml&#x4E2D;&#x7684;&#x6761;&#x76EE;&#x4E3A;&#x7A7A;&#xFF0C;&#x6A21;&#x677F;&#x5C06;&#x4E0D;&#x4F1A;&#x5448;&#x73B0;&#xFF0C;&#x5E76;&#x4F1A;&#x8FD4;&#x56DE;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x63D0;&#x4F9B;&#x7684;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#x3002;</p>
+<p>&#x4F8B;&#x5982;:</p>
+<pre><code class="lang-yam">{{ required &quot;A valid foo is required!&quot; .Values.foo }}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x5C06;&#x5728;&#x5B9A;&#x4E49;&#x4E86;.Values.foo&#x65F6;&#x6E32;&#x67D3;&#x6A21;&#x677F;&#xFF0C;&#x4F46;&#x5728;&#x672A;&#x5B9A;&#x4E49;.Values.foo&#x65F6;&#x5C06;&#x65E0;&#x6CD5;&#x6E32;&#x67D3;&#x5E76;&#x9000;&#x51FA;&#x3002;</p>
+<h2 id="&#x521B;&#x5EFA;&#x955C;&#x50CF;&#x62C9;&#x53D6;secret">&#x521B;&#x5EFA;&#x955C;&#x50CF;&#x62C9;&#x53D6;secret</h2>
+<p>&#x955C;&#x50CF;&#x62C9;&#x7684;&#x79D8;&#x94A5;&#x5B9E;&#x8D28;&#x4E0A;&#x662F;&#x6CE8;&#x518C;&#x8868;&#xFF0C;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x7684;&#x7EC4;&#x5408;&#x3002; &#x60A8;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5B83;&#x4EEC;&#x5728;&#x60A8;&#x6B63;&#x5728;&#x90E8;&#x7F72;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x4F46;&#x8981;&#x521B;&#x5EFA;&#x5B83;&#x4EEC;&#x9700;&#x8981;&#x591A;&#x6B21;&#x8FD0;&#x884C;base64&#x3002; &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x5E2E;&#x52A9;&#x7A0B;&#x5E8F;&#x6A21;&#x677F;&#x6765;&#x7EC4;&#x5408;Docker&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4EE5;&#x7528;&#x4F5C;Secret&#x7684;&#x6709;&#x6548;&#x8D1F;&#x8F7D;&#x3002; &#x8FD9;&#x91CC;&#x662F;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x5047;&#x8BBE;&#x51ED;&#x8BC1;&#x662F;&#x5728;values.yaml&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">imageCredentials:</span>
+<span class="hljs-attr">  registry:</span> quay.io
+<span class="hljs-attr">  username:</span> someone
+<span class="hljs-attr">  password:</span> sillyness
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x6211;&#x4EEC;&#x7684;&#x5E2E;&#x52A9;&#x6A21;&#x677F;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-yaml">{{- define <span class="hljs-string">&quot;imagePullSecret&quot;</span> }}
+{{- printf <span class="hljs-string">&quot;{\&quot;auths\&quot;: {\&quot;%s\&quot;: {\&quot;auth\&quot;: \&quot;%s\&quot;}}}&quot;</span> .Values.imageCredentials.registry (printf <span class="hljs-string">&quot;%s:%s&quot;</span> .Values.imageCredentials.username .Values.imageCredentials.password | b64enc) | b64enc }}
+{{- end }}
+</code></pre>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x66F4;&#x5927;&#x7684;&#x6A21;&#x677F;&#x4E2D;&#x4F7F;&#x7528;&#x52A9;&#x624B;&#x6A21;&#x677F;&#x6765;&#x521B;&#x5EFA;Secret&#x58F0;&#x660E;:</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Secret
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> myregistrykey
+<span class="hljs-attr">type:</span> kubernetes.io/dockerconfigjson
+<span class="hljs-attr">data:</span>
+  .dockerconfigjson: {{ template <span class="hljs-string">&quot;imagePullSecret&quot;</span> . }}
+</code></pre>
+<h2 id="&#x5728;&#x914D;&#x7F6E;&#x6216;secret&#x53D8;&#x66F4;&#x65F6;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x5377;&#x5C55;&#x5F00;">&#x5728;&#x914D;&#x7F6E;&#x6216;secret&#x53D8;&#x66F4;&#x65F6;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x5377;&#x5C55;&#x5F00;</h2>
+<p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;configmaps&#x6216;secrets&#x88AB;&#x4F5C;&#x4E3A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6CE8;&#x5165;&#x5BB9;&#x5668;&#x4E2D;&#x3002; &#x6839;&#x636E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x4E0D;&#x540C;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#x540E;&#x7EED;&#x7684;helm upgrade&#x8FDB;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x4F46;&#x5982;&#x679C;deployment spec&#x672C;&#x8EAB;&#x6CA1;&#x6709;&#x66F4;&#x6539;&#xFF0C;&#x5219;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4F1A;&#x7EE7;&#x7EED;&#x4E0E;&#x65E7;&#x914D;&#x7F6E;&#x4E00;&#x8D77;&#x8FD0;&#x884C;&#xFF0C;&#x5BFC;&#x81F4;&#x90E8;&#x7F72;&#x4E0D;&#x4E00;&#x81F4;&#x3002;</p>
+<p>sha256sum&#x51FD;&#x6570;&#x53EF;&#x7528;&#x4E8E;&#x786E;&#x4FDD;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x53D1;&#x751F;&#x66F4;&#x6539;&#x65F6;&#x66F4;&#x65B0;&#x90E8;&#x7F72;&#x7684;&#x6CE8;&#x89E3;&#x90E8;&#x5206;:</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      annotations:</span>
+        checksum/config: {{ include (print $.Template.BasePath <span class="hljs-string">&quot;/configmap.yaml&quot;</span>) . | sha256sum }}
+[...]
+</code></pre>
+<p>&#x53E6;&#x8BF7;&#x53C2;&#x9605;helm upgrade --recreate-pods&#x6807;&#x5FD7;&#xFF0C;&#x4EE5;&#x89E3;&#x51B3;&#x6B64;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x544A;&#x8BC9;tiller&#x4E0D;&#x8981;&#x5220;&#x9664;&#x8D44;&#x6E90;">&#x544A;&#x8BC9;TILLER&#x4E0D;&#x8981;&#x5220;&#x9664;&#x8D44;&#x6E90;</h2>
+<p>&#x6709;&#x65F6;&#x5728;Helm&#x8FD0;&#x884C;helm&#x5220;&#x9664;&#x65F6;&#x4E0D;&#x5E94;&#x5220;&#x9664;&#x8D44;&#x6E90;&#x3002; chart&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x53EF;&#x4EE5;&#x5C06;&#x6CE8;&#x89E3;&#x6DFB;&#x52A0;&#x5230;&#x8D44;&#x6E90;&#x4EE5;&#x9632;&#x6B62;&#x88AB;&#x5220;&#x9664;&#x3002;</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">kind:</span> Secret
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  annotations:</span>
+    <span class="hljs-string">&quot;helm.sh/resource-policy&quot;</span>: keep
+[...]
+</code></pre>
+<p>(&#x5F15;&#x7528;&#x662F;&#x5FC5;&#x987B;&#x7684;)</p>
+<p>&#x6CE8;&#x89E3;&#x201C;helm.sh/resource-policy&#x201D;&#xFF1A;&#x4FDD;&#x6301;&#x5728;helm delete&#x64CD;&#x4F5C;&#x671F;&#x95F4;&#x6307;&#x793A;Tiller&#x8DF3;&#x8FC7;&#x8BE5;&#x8D44;&#x6E90;&#x3002; &#x4F46;&#x662F;&#xFF0C;&#x6B64;&#x8D44;&#x6E90;&#x53D8;&#x6210;&#x5B64;&#x513F;&#x3002; helm&#x5C06;&#x4E0D;&#x518D;&#x4EE5;&#x4EFB;&#x4F55;&#x65B9;&#x5F0F;&#x7BA1;&#x7406;&#x5B83;&#x3002; &#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;helm install - &#x66FF;&#x6362;&#x5DF2;&#x88AB;&#x5220;&#x9664;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x4F46;&#x4FDD;&#x7559;&#x4E86;&#x8D44;&#x6E90;&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;partials&#x548C;&#x6A21;&#x677F;&#x5305;&#x542B;">&#x4F7F;&#x7528;&#x201C;PARTIALS&#x201D;&#x548C;&#x6A21;&#x677F;&#x5305;&#x542B;</h2>
+<p>&#x6709;&#x65F6;&#x5019;&#x4F60;&#x60F3;&#x5728;chart&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E9B;&#x53EF;&#x91CD;&#x7528;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x65E0;&#x8BBA;&#x5B83;&#x4EEC;&#x662F;blockss&#x8FD8;&#x662F;&#x6A21;&#x677F;&#x90E8;&#x5206;&#x3002; &#x901A;&#x5E38;&#xFF0C;&#x5C06;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#x4F1A;&#x66F4;&#x5E72;&#x51C0;&#x3002;</p>
+<p>&#x5728;templates /&#x76EE;&#x5F55;&#x4E2D;&#xFF0C;&#x4EFB;&#x4F55;&#x4EE5;&#x4E0B;&#x5212;&#x7EBF;&#xFF08;_&#xFF09;&#x5F00;&#x5934;&#x7684;&#x6587;&#x4EF6;&#x90FD;&#x4E0D;&#x4F1A;&#x8F93;&#x51FA;Kubernetes&#x58F0;&#x660E;&#x6587;&#x4EF6;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x6309;&#x7167;&#x60EF;&#x4F8B;&#xFF0C;&#x8F85;&#x52A9;&#x6A21;&#x677F;&#x548C;PARTIALS&#x88AB;&#x653E;&#x7F6E;&#x5728;_helpers.tpl&#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<h2 id="&#x590D;&#x6742;&#x7684;chart&#x4E0E;&#x8BB8;&#x591A;&#x76F8;&#x5173;&#x5185;&#x5BB9;">&#x590D;&#x6742;&#x7684;chart&#x4E0E;&#x8BB8;&#x591A;&#x76F8;&#x5173;&#x5185;&#x5BB9;</h2>
+<p>&#x5B98;&#x65B9;chart&#x5B58;&#x50A8;&#x5E93;&#x4E2D;&#x7684;&#x8BB8;&#x591A;chart&#x662F;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x66F4;&#x9AD8;&#x7EA7;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x201C;&#x6784;&#x5EFA;&#x5757;(buiding block)&#x201D;&#x3002; &#x4F46;chart&#x53EF;&#x80FD;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5927;&#x89C4;&#x6A21;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x5B9E;&#x4F8B;&#x3002; &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E00;&#x5F20;&#x4F1E;&#x5F62;chart&#x53EF;&#x80FD;&#x6709;&#x591A;&#x4E2A;&#x5B50;chart&#xFF0C;&#x6BCF;&#x4E2A;&#x5B50;chart&#x90FD;&#x8D77;&#x7740;&#x6574;&#x4F53;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<p>&#x4ECE;&#x79BB;&#x6563;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#x590D;&#x6742;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x5F53;&#x524D;&#x6700;&#x4F73;&#x505A;&#x6CD5;&#x662F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x516C;&#x5F00;&#x5168;&#x5C40;&#x914D;&#x7F6E;&#x7684;&#x9876;&#x7EA7;&#x4F1E;&#x5F62;chart&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;charts /&#x5B50;&#x76EE;&#x5F55;&#x6765;&#x5D4C;&#x5165;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x3002;</p>
+<p>&#x8FD9;&#x4E9B;&#x9879;&#x76EE;&#x8BF4;&#x660E;&#x4E86;&#x4E24;&#x79CD;&#x5F3A;&#x5927;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li><p><strong>SAP</strong>&#x7684;<a href="https://github.com/sapcc/openstack-helm" target="_blank"><strong>OpenStack chart</strong></a> &#x6B64;chart&#x5728;Kubernetes&#x4E0A;&#x5B89;&#x88C5;&#x5B8C;&#x6574;&#x7684;OpenStack IaaS&#x3002; &#x6240;&#x6709;chart&#x90FD;&#x6536;&#x96C6;&#x5728;&#x4E00;&#x4E2A;GitHub&#x5B58;&#x50A8;&#x5E93;&#x4E2D;&#x3002;</p>
+</li>
+<li><p><strong>Deis</strong>&#x7684;<a href="https://github.com/deis/workflow/tree/master/charts/workflow" target="_blank"><strong>Workflow</strong></a>: &#x8FD9;chart&#x8868;&#x663E;&#x793A;&#x4E86;&#x6574;&#x4E2A;Deis PaaS&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x5F20;chart&#x3002; &#x4F46;&#x4E0E;SAP chart&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x8BE5;workflow chart&#x662F;&#x4ECE;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x6784;&#x5EFA;&#x800C;&#x6765;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x90FD;&#x5728;&#x4E0D;&#x540C;&#x7684;Git&#x5B58;&#x50A8;&#x5E93;&#x4E2D;&#x8FDB;&#x884C;&#x8DDF;&#x8E2A;&#x3002; &#x67E5;&#x770B;requirements.yaml&#x6587;&#x4EF6;&#x4EE5;&#x67E5;&#x770B;&#x6B64;chart&#x662F;&#x5982;&#x4F55;&#x7531;&#x5176;CI / CD&#x7BA1;&#x9053;&#x7EC4;&#x6210;&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x4E2A;chart&#x90FD;&#x8BF4;&#x660E;&#x4E86;&#x4F7F;&#x7528;Helm&#x590D;&#x6742;&#x73AF;&#x5883;&#x7684;&#x6210;&#x719F;&#x6280;&#x672F;&#x3002;</p>
+</li>
+</ul>
+<h2 id="yaml&#x662F;json&#x7684;&#x4E00;&#x4E2A;&#x8D85;&#x7EA7;">YAML&#x662F;JSON&#x7684;&#x4E00;&#x4E2A;&#x8D85;&#x7EA7;</h2>
+<p>&#x6839;&#x636E;YAML&#x89C4;&#x8303;&#xFF0C;YAML&#x662F;JSON&#x7684;&#x8D85;&#x96C6;&#x3002; &#x8FD9;&#x610F;&#x5473;&#x7740;&#x4EFB;&#x4F55;&#x6709;&#x6548;&#x7684;JSON&#x7ED3;&#x6784;&#x90FD;&#x5E94;&#x8BE5;&#x5728;YAML&#x4E2D;&#x6709;&#x6548;&#x3002;</p>
+<p>&#x8FD9;&#x6709;&#x4E00;&#x4E2A;&#x4F18;&#x70B9;&#xFF1A;&#x6709;&#x65F6;&#x6A21;&#x677F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x73B0;&#x4F7F;&#x7528;&#x7C7B;&#x4F3C;JSON&#x7684;&#x8BED;&#x6CD5;&#x6765;&#x8868;&#x8FBE;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x66F4;&#x5BB9;&#x6613;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5904;&#x7406;YAML&#x7684;&#x7A7A;&#x767D;&#x654F;&#x611F;&#x5EA6;&#x3002;</p>
+<p>&#x4F5C;&#x4E3A;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#xFF0C;&#x6A21;&#x677F;&#x5E94;&#x9075;&#x5FAA;&#x7C7B;&#x4F3C;YAML&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x9664;&#x975E;JSON&#x8BED;&#x6CD5;&#x5927;&#x5E45;&#x964D;&#x4F4E;&#x4E86;&#x683C;&#x5F0F;&#x95EE;&#x9898;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<h2 id="&#x8BF7;&#x5C0F;&#x5FC3;&#x751F;&#x6210;&#x968F;&#x673A;&#x503C;">&#x8BF7;&#x5C0F;&#x5FC3;&#x751F;&#x6210;&#x968F;&#x673A;&#x503C;</h2>
+<p>Helm&#x4E2D;&#x6709;&#x4E00;&#x4E9B;&#x51FD;&#x6570;&#x5141;&#x8BB8;&#x60A8;&#x751F;&#x6210;&#x968F;&#x673A;&#x6570;&#x636E;&#xFF0C;&#x52A0;&#x5BC6;&#x5BC6;&#x94A5;&#x7B49;&#x3002; &#x8FD9;&#x4E9B;&#x90FD;&#x5F88;&#x597D;&#x7528;&#x3002; &#x4F46;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6A21;&#x677F;&#x4F1A;&#x88AB;&#x91CD;&#x65B0;&#x6267;&#x884C;&#x3002; &#x5F53;&#x6A21;&#x677F;&#x8FD0;&#x884C;&#x4EA7;&#x751F;&#x4E0E;&#x4E0A;&#x6B21;&#x8FD0;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x5C06;&#x89E6;&#x53D1;&#x8BE5;&#x8D44;&#x6E90;&#x7684;&#x66F4;&#x65B0;&#x3002;</p>
+<h2 id="&#x7ACB;&#x5373;&#x5347;&#x7EA7;&#x7248;&#x672C;">&#x7ACB;&#x5373;&#x5347;&#x7EA7;&#x7248;&#x672C;</h2>
+<p>&#x4E3A;&#x4E86;&#x5728;&#x5B89;&#x88C5;&#x548C;&#x5347;&#x7EA7;&#x53D1;&#x884C;&#x7248;&#x65F6;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code class="lang-shell">helm upgrade --install &lt;release name&gt; --values &lt;values file&gt; &lt;chart directory&gt;
+</code></pre>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; www.gitbook.com/@VitZhou 2016 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2018-04-06 18:23:53
+</span></footer>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="lifecycle_hooks.html" class="navigation navigation-prev " aria-label="Previous page: 生命周期和钩子">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="repository.html" class="navigation navigation-next " aria-label="Next page: chart库">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"开发chart的技巧","level":"1.3.2","depth":2,"next":{"title":"chart库","level":"1.3.3","depth":2,"path":"charts/repository.md","ref":"charts/repository.md","articles":[]},"previous":{"title":"生命周期和钩子","level":"1.3.1","depth":2,"path":"charts/lifecycle_hooks.md","ref":"charts/lifecycle_hooks.md","articles":[]},"dir":"ltr"},"config":{"plugins":["donate","splitter","emphasize","tbfed-pagefooter","toggle-chapters","edit-link","etoc","back-to-top-button","tags"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy www.gitbook.com/@VitZhou 2016","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"emphasize":{},"etoc":{"h2lb":3,"header":1,"maxdepth":4,"mindepth":3,"notoc":false},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"donate":{"alipay":"https://vitzhou.gitbooks.io/java-test-learning/content/img/alipay.png","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://vitzhou.gitbooks.io/java-test-learning/content/img/wechat.png","wechatText":"微信打赏"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"tags":{"placement":"top"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit","base":"https://github.com/vitzhou/study-helm.git/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"VitZhou <vitzhou@gmail.com>","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Helm 学习笔记(中文翻译)","gitbook":">=3.2.0","sidebar":{"vitzhou@gitbook":"https://vitzhou.gitbooks.io"},"description":"Helm 学习笔记(中文翻译)"},"file":{"path":"charts/tips_and_tricks.md","mtime":"2018-04-06T10:23:53.176Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-06T16:14:23.091Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-etoc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
