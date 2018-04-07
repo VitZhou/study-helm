@@ -9,3 +9,8 @@
     * [同步chart库](charts/syncing_repository.md)
     * [chart签名](charts/provenance_integrity.md)
     * [chart测试](charts/chart_test.md)
+* [开发模板](deloping_templates/intro.md)
+	* [快速开始](deloping_templates/quik_start.md)
+	* [内置对象](deloping_templates/build-in-object.md)
+	* [Values文件](deloping_templates/values-file.md)
+	* [函数和pipeline](deloping_templates/function_pipeline.md)
