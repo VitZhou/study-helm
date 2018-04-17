@@ -99,15 +99,15 @@ Now serving you on 127.0.0.1:8879
 
 第一步是创建您的GCS存储。 我们会调用给我们的fantastic-charts。
 
-![](/Users/zhoushenghua/workspace/study/study/helm/img/create-a-bucket.png)
+![](../img/create-a-bucket.png)
 
 接下来，通过编辑存储权限使您的存储公开。
 
-![](/Users/zhoushenghua/workspace/study/study/helm/img/make-bucket-public.png)
+![](../img/make-bucket-public.png)
 
 插入此订单项以公开您的存储分区：
 
-![](/Users/zhoushenghua/workspace/study/study/helm/img/edit-permissions.png)
+![](../img/edit-permissions.png)
 
 恭喜，现在你有一个空的GCS准备好服务chart！
 
@@ -134,11 +134,11 @@ $ git checkout -b gh-pages
 
 或者通过网络浏览器使用Github存储库上的分支按钮：
 
-![](/Users/zhoushenghua/workspace/study/study/helm/img/create-a-gh-page-button.png)
+![](../img/create-a-gh-page-button.png)
 
 接下来，您需要确保您的gh-pages分支设置为Github Pages，点击您的repo Settings并向下滚动到Github页面部分并按照以下设置：
 
-![](/Users/zhoushenghua/workspace/study/study/helm/img/set-a-gh-page.png)
+![](../img/set-a-gh-page.png)
 
 默认情况下，Source通常被设置为gh-pages分支。 如果这不是默认设置，那么选择它。
 

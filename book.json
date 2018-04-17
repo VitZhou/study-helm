@@ -29,11 +29,11 @@
       "wechatText": "微信打赏"
     },
 	"edit-link": {
-        "base": "https://github.com/vitzhou/study-helm.git/edit/master",
+        "base": "https://github.com/VitZhou/study-helm.git/edit/master",
         "label": "Edit"
     },
     "tbfed-pagefooter": {
-      "copyright":"Copyright &copy www.gitbook.com/@VitZhou 2016",
+      "copyright":"Copyright &copy www.gitbook.com/@VitZhou 2018",
       "modify_label": "该文件修订时间：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     }
