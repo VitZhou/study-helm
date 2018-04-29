@@ -17,9 +17,17 @@
     "edit-link", 
     "etoc",
     "back-to-top-button",
-    "tags"
+    "tags",
+    "ga",
+    "3-ba",
   ],
   "pluginsConfig": {
+     "ga": {
+        "token": "UA-113904612-1"
+    },
+    "3-ba": {
+            "token": "5e7939ec0e76c7d22e429ffd57848a67"
+        },
     "donate": {
       "wechat": "https://vitzhou.gitbooks.io/java-test-learning/content/img/wechat.png",
       "alipay": "https://vitzhou.gitbooks.io/java-test-learning/content/img/alipay.png",
