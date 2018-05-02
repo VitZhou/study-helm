@@ -33,7 +33,7 @@
       "wechatText": "微信打赏"
     },
     "edit-link": {
-        "base": "https://github.com/VitZhou/study-helm.git/edit/master",
+        "base": "https://github.com/VitZhou/study-helm/edit/master",
         "label": "Edit"
     },
     "tbfed-pagefooter": {
