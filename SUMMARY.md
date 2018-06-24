@@ -1,6 +1,8 @@
 # Summary
 
 * [使用Helm](use_helm/use_helm.md)
+  * [快速开始](use_helm/quick_start.md)
+  * [安装Helm](use_helm/installing.md)
   * [插件](use_helm/plugin.md)
 * [Charts](charts/charts.md)
   * [生命周期和钩子](charts/lifecycle_hooks.md)
